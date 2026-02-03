@@ -84,7 +84,7 @@ def recongnize_face_img(img:np.ndarray, face_yml:str, people:list[str]):
 
         label, confidence = face_recognizer.predict(faces_roi)
 
-        cv.putText(img, f'{str(people[label])}   {round(confidence, 2)}', (x, y), cv.FONT_HERSHEY_COMPLEX, 1.0, (0, 255, 0), thickness=2)
+        cv.putText(img, f"{str(people[label])}   {round(confidence, 2)}", (x, y), cv.FONT_HERSHEY_COMPLEX, 1.0, (0, 255, 0), thickness=2)
         cv.rectangle(img, (x,y), (x+w,y+h), (0, 255,0), thickness=2)
 
     cv.imshow('Detected Face', img)
@@ -118,15 +118,11 @@ def recognize_face_vid(capture:cv.VideoCapture, face_yml:str, people:list[str]):
         if cv.waitKey(20) & 0xFF==ord('d'): # (stops when d is pressed)
             break
 
+def testing():
+    getFeatures('training')
+    img = cv.imread(os.path.join(os.curdir, 'training', 'madonna', '5.jpg'))
+    recongnize_face_img(img, 'face_trained.yml', np.load('people.npy', allow_pickle=True))
+    # recognize_face_vid(cv.VideoCapture(0), 'face_trained.yml', np.load('people.npy', allow_pickle=True))
 
-getFeatures('training')
-img = cv.imread(r'C:\Users\Rocket\Desktop\Projects\pythonproject2\myprojects\rocketRecognition\validating\jerry_seinfeld/3.jpg')
-# cv.imshow("cool", img)
-recongnize_face_img(img, 'face_trained.yml', np.load('people.npy', allow_pickle=True))
-# recognize_face_vid(cv.VideoCapture(0), 'face_trained.yml', np.load('people.npy', allow_pickle=True))
-
-# path = r'C:\Users\Rocket\Desktop\Projects\pythonproject2\myprojects\rocketRecognition\validating'
-# for dir in os.listdir(path):
-#     fileRenamer(os.path.join(path, dir))
-
-cv.waitKey(0)
+if __name__ == "__main__":
+    testing()
