@@ -4,9 +4,9 @@ This Python script is designed to perform face recognition using OpenCV and Haar
 
 ## Versions
 
-numpy==2.4.2
-opencv-contrib-python==4.13.0.90
-opencv-python==4.13.0.90
+numpy==2.4.2  
+opencv-contrib-python==4.13.0.90  
+opencv-python==4.13.0.90  
 
 ## Installation
 
